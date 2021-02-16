@@ -10,7 +10,6 @@ on the pseudo code presented!
 # -----------------------------------------------------------------
 A, B, C = -5, '8', 7.6  # DO NOT MODIFY CONSTANT VALUES
 TOTAL = int()           # DO NOT MODIFY DATA TYPE
-
 ''' PSEUDO CODE
 SUM given values of A, B and C as integers, CASTING where necessary.
 STORE result in variable 'TOTAL'.
@@ -20,6 +19,10 @@ Expected output:
 '''
 
 # TODO: implement your solution for pseudo code!
+
+
+TOTAL = A + int(B) + int(C)
+
 
 print("{} + {} + {} = {}".format(A, B, C, TOTAL))  # DO NOT MODIFY
 
@@ -38,5 +41,10 @@ Expected output:
 '''
 
 # TODO: implement your solution for pseudo code!
+
+if TEXT.find(str(TOTAL)):
+    OUTPUT = "true that"
+else:
+    OUTPUT = "nope"
 
 print("Value of 'TOTAL' exists in string: {}".format(OUTPUT))  # DO NOT MODIFY
