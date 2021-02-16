@@ -29,8 +29,8 @@ def main():
 
 def authenticate_user(credentials: str) -> bool:
     """Procedure for validating user credentials"""
-    username = 'Chevy_Chase'            # Expected username. MAY NOT BE MODIFIED!!
-    password = 'i0J0u0j0u0J0Zys0r0{'    # Expected password. MAY NOT BE MODIFIED!!
+    username = 'Chevy_Chase'  # Expected username. MAY NOT BE MODIFIED!!
+    password = 'i0J0u0j0u0J0Zys0r0{'  # Expected password. MAY NOT BE MODIFIED!!
     user_tmp = pass_tmp = str()
 
     ''' PSEUDO CODE
@@ -41,6 +41,18 @@ def authenticate_user(credentials: str) -> bool:
     RETURN outcome of validation as BOOLEAN VALUE.
     '''
     pass  # TODO: Replace with implementation!
+
+    credentials = credentials.split()
+    user_tmp = credentials[0] + ' ' + credentials[1]
+    pass_tmp = credentials[2]
+
+    user_tmp = format_username(user_tmp)
+    pass_tmp = decrypt_password(pass_tmp)
+
+    if user_tmp == username and pass_tmp == password:
+        return True
+    else:
+        return False
 
 
 def format_username(username: str) -> str:
@@ -54,11 +66,35 @@ def format_username(username: str) -> str:
     '''
     pass  # TODO: Replace with implementation!
 
+    username = username.split()
+
+    newuser = ''
+
+    r = 0
+    k = 0
+
+    for user in username:
+        r = 0
+        if k != 0:
+            newuser += '_'
+
+        k += 1
+
+        for i in user:
+            if r == 0:
+                newuser += i.upper()
+                r += 1
+            else:
+                newuser += i.lower()
+                r += 1
+
+    return newuser
+
 
 def decrypt_password(password: str) -> str:
     """Procedure used to decrypt user provided password"""
-    rot7, rot9 = 7, 9       # Rotation values. MAY NOT BE MODIFIED!!
-    vowels = 'AEIOUaeiou'   # MAY NOT BE MODIFIED!!
+    rot7, rot9 = 7, 9  # Rotation values. MAY NOT BE MODIFIED!!
+    vowels = 'AEIOUaeiou'  # MAY NOT BE MODIFIED!!
     decrypted = str()
 
     ''' PSEUDO CODE
@@ -71,6 +107,29 @@ def decrypt_password(password: str) -> str:
     RETURN decrypted string value
     '''
     pass  # TODO: Replace with implementation!
+
+    flag = 0
+    count = 0
+    key = 0
+
+    for i in password:
+
+        if i in vowels:
+            flag = 1
+        if (count % 2) == 0:
+            key = rot7
+        else:
+            key = rot9
+        dValue = chr(ord(i) + key)
+        if flag == 1:
+            decrypted += '0' + dValue + '0'
+        else:
+            decrypted += dValue
+        count += 1
+        flag = 0
+        key = 0
+
+    return decrypted
 
 
 if __name__ == "__main__":
